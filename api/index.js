@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
 import authRoutes from './routes/auth.route.js';
-import Pay from './routes/pay.route.js';
 import Sup from './routes/suplier.route.js';
 
 import cookieParser from 'cookie-parser';
@@ -27,7 +26,6 @@ app.listen(3000, () => {
 
 
 app.use('/api/auth', authRoutes);
-app.use('/api/sheet', Pay);
 app.use('/api/suplier', Sup);
 
 
