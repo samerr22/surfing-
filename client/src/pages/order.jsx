@@ -10,42 +10,63 @@ import {
 import girl from "../img/img.jpg";
 
 export default function Order() {
-  const [formData, setFormData] = useState({});
-  const { loading, error: errorMessage } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handlchange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.email || !formData.password) {
-      return dispatch(signInFailure("please fill all the fields"));
-    }
-
-    try {
-      dispatch(signInStart());
-
-      const res = await fetch("/api/auth/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(signInFailure(data.message));
+    const [formData, setFormData] = useState({});
+    const [publishError, setPublishError] = useState(null);
+    const [validation, setValidation] = useState(null);
+  
+    const navigate = useNavigate();
+  
+    const handlchange = (e) => {
+      setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+    };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const res = await fetch("/api/suplier/Ocreate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setPublishError(data.message);
+          return;
+        }
+  
+        if (res.ok) {
+          setPublishError(null);
+          console.log("sussessfull");
+          alert('successfull')
+          navigate("/table")
+         
+        }
+      } catch (error) {
+        setPublishError("Something went wrong");
       }
+    };
 
-      if (res.ok) {
-        dispatch(signInSuccess(data));
-        navigate("/");
-      }
-    } catch (error) {
-      dispatch(signInFailure(data.message));
-    }
-  };
+
+    //validation
+    const handleQuantityChange = (e) => {
+        const quntity = e.target.value.trim();
+        const quantityPattern = /^[1-9]\d*$/; // Pattern for positive integers
+
+        if (quntity === "") {
+            setValidation(null);
+        } else if (!quantityPattern.test(quntity)) {
+            if (isNaN(quntity)) {
+                setValidation("Quantity must be a number");
+            } else {
+                setValidation("Quantity must be a positive integer");
+            }
+        } else {
+            setFormData({ ...formData, quntity });
+            setValidation(null);
+        }
+    };
 
   return (
     <div className="  min-h-screen ">
@@ -65,9 +86,16 @@ export default function Order() {
                 <h1 className="text-4xl font-serif opacity-70 text-gray-800">
                   Order Request
                 </h1>
+                <div className="flex justify-center items-center">
+                <Link to={`/table`}>
+                <button className="text-md hover:text-white  font-serif underline text-gray-800">
+                  Back
+                </button>
+              </Link>
+                </div>
               </div>
             </div>
-            <div className="bg-blue-500 bg-opacity-10 w-[480px]  md:w-[550px] lg:w-[550px] border h-[500px] mt-8 max-w-3xl mx-auto rounded-3xl border-opacity-70 ">
+            <div className="bg-blue-500 bg-opacity-10 w-[480px]  md:w-[550px] lg:w-[550px] border h-[500px] mt-2 max-w-3xl mx-auto rounded-3xl border-opacity-70 ">
               <div className="flex justify-center items-center   ">
                 <div className="mt-2">
                   <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -80,7 +108,7 @@ export default function Order() {
                         className=" bg-slate-100 bg-opacity-40 border-white p-3 border-opacity-50 rounded-lg w-[460px] h-11"
                         type=""
                         placeholder=""
-                        id="password"
+                        id="Iname"
                         onChange={handlchange}
                       />
                     </div>
@@ -88,51 +116,49 @@ export default function Order() {
                       <h3 className="font-semibold text-gray-700 ml-1">
                         Quantity
                       </h3>
-                      <textarea
-                        className=" bg-slate-100 bg-opacity-40 border-white border-opacity-50  p-3 rounded-lg w-[460px] h-28"
-                        type="email"
-                        placeholder="name@company.com"
-                        id="email"
-                        onChange={handlchange}
+                      <input
+                        className=" bg-slate-100 bg-opacity-40 border-white border-opacity-50  p-3 rounded-lg w-[460px] h-10"
+                        type=""
+                        placeholder=""
+                        id="quntity"
+                        onChange={handleQuantityChange}
                       />
+                       {validation && (
+                    <p className="mt-0 text-white h-0     rounded-lg text-center ">
+                      {validation}
+                    </p>
+                     )}
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-950 text-opacity-65 ml-1">
                         Description
                       </h3>
                       <textarea
-                        className=" bg-slate-100 bg-opacity-40 border-white border-opacity-50  p-3 rounded-lg w-[460px] h-28"
-                        type="email"
-                        placeholder="name@company.com"
-                        id="email"
+                        className=" bg-slate-100 bg-opacity-40 border-white border-opacity-50  p-3 rounded-lg w-[460px] h-40"
+                        type=""
+                        placeholder=""
+                        id="description"
                         onChange={handlchange}
                       />
                     </div>
                     <button
                       className=" bg-blue-950 mt-6 bg-opacity-80 border-white border border-opacity-50 text-white p-3 rounded-lg w-[460px] h-[45px] hover:opacity-90"
                       type="submit"
-                      disabled={loading}
+                      
                     >
-                      {loading ? (
-                        <>
-                          <Spinner size="sm" />
-                          <sapn className="pl-3">Loading...</sapn>
-                        </>
-                      ) : (
-                        <>
+                     
                           <div className="flex items-center justify-center">
                             <div className="font-serif text-xl opacity-75 uppercase">
                               Submit
                             </div>
                           </div>
-                        </>
-                      )}
+                       
                     </button>
                   </form>
 
-                  {errorMessage && (
-                    <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
-                      {errorMessage}
+                  {publishError && (
+                    <p className="mt-0 text-red-600 absolute bg-slate-100 bg-opacity-50  w-300 h-12  ml-10 rounded-lg text-center ">
+                      {publishError}
                     </p>
                   )}
                 </div>

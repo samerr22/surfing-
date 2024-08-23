@@ -12,6 +12,7 @@ import girl from "../img/img.jpg";
 export default function supplierAdd() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+  const [validation, setValidation] = useState(null);
 
   const navigate = useNavigate();
 
@@ -38,12 +39,30 @@ export default function supplierAdd() {
       if (res.ok) {
         setPublishError(null);
         console.log("sussessfull");
+        alert("suscessfull")
+        navigate('/table')
        
       }
     } catch (error) {
       setPublishError("Something went wrong");
     }
   };
+
+  //contact number validation 
+  const handleContactChange = (e) => {
+    const contact = e.target.value.trim();
+    const contactPattern = /^[0-9]{10}$/;
+  
+    if (!contactPattern.test(contact)) {
+        setValidation("Contact number must be a 10-digit number");
+    } else {
+      setFormData({ ...formData, contact });
+      setValidation(null); // Clear error message if contact number is valid
+    }
+  };
+  
+
+
   return (
     <div className="  min-h-screen ">
       <img
@@ -62,9 +81,17 @@ export default function supplierAdd() {
                 <h1 className="text-4xl font-serif opacity-70 text-gray-800">
                   New Supplier
                 </h1>
+                <div className="flex justify-center items-center">
+                <Link to={`/table`}>
+                <button className="text-md  font-serif underline text-gray-800">
+                  Back
+                </button>
+              </Link>
+                </div>
+               
               </div>
             </div>
-            <div className="bg-blue-500 bg-opacity-10 w-[480px]  md:w-[550px] lg:w-[550px] border h-[600px] mt-8 max-w-3xl mx-auto rounded-3xl border-opacity-70 ">
+            <div className="bg-blue-500 bg-opacity-10 w-[480px]  md:w-[550px] lg:w-[550px] border h-[600px] mt-2 max-w-3xl mx-auto rounded-3xl border-opacity-70 ">
               <div className="flex justify-center items-center   ">
                 <div className="mt-2">
                   <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -89,9 +116,16 @@ export default function supplierAdd() {
                         type=""
                         placeholder=""
                         id="contact"
-                        onChange={handlchange}
+                        maxLength={10}
+                        onChange={handleContactChange}
                       />
+                       {validation && (
+                    <p className="mt-0 text-white h-0     rounded-lg text-center ">
+                      {validation}
+                    </p>
+                  )}
                     </div>
+                   
                     <div>
                       <h3 className="font-semibold text-gray-700 ml-1">
                         Address
@@ -132,7 +166,7 @@ export default function supplierAdd() {
                   </form>
 
                   {publishError && (
-                    <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
+                    <p className="mt-0 text-red-600 absolute bg-slate-100 bg-opacity-50  w-300 h-12 ml-[-50px] rounded-lg text-center ">
                       {publishError}
                     </p>
                   )}
