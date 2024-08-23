@@ -1,66 +1,59 @@
-
 import facebook from "../img/facebook.png";
-import gamail from "../img/gmail.png";
+import gmail from "../img/gmail.png";
 import google from "../img/google-maps.png";
 import instr from "../img/instagram.png";
-import linkdin from "../img/linkedin.png";
+import linkedin from "../img/linkedin.png";
 import youtube from "../img/youtube.png";
 
 export default function Footer() {
   return (
-    <div className=" flex flex-col items-center border border-t-8  bg-slate-700  ">
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="grid w-full justify-between sm:flex md:grid-cols-1">
-          <div className="flex gap-40 ml-20 justify-center items-center">
-            <div>
-              <h1 className="text-white text-lg font-serif">Follow Us: </h1>
-              <p className="text-white">dfdfdfdfdfdf</p>
-              <p className="text-white">dfdfdfdfdfdf</p>
-              
+    <div className="bg-[#464e5a] broder-none">
+      <div className="w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          
+          {/* Column 1 */}
+          <div className="text-white">
+            <h1 className="text-lg font-serif mb-2">Follow Us:</h1>
+            <p className="mb-1">dfdfdfdfdfdf</p>
+            <p>dfdfdfdfdfdf</p>
+          </div>
+          
+          {/* Column 2 */}
+          <div className="text-white">
+            <h1 className="text-lg font-serif mb-2">Get in Touch:</h1>
+            <p className="mb-1">dfdfdfdfdfdf</p>
+            <p>dfdfdfdfdfdf</p>
+          </div>
+          
+          {/* Column 3 */}
+          <div className="text-white">
+            <h1 className="text-lg font-serif mb-2">Our Services:</h1>
+            <p className="mb-1">dfdfdfdfdfdf</p>
+            <p>dfdfdfdfdfdf</p>
+          </div>
+          
+          {/* Column 4 */}
+          <div className="text-white">
+            <h1 className="text-lg font-serif mb-2">Contact Us:</h1>
+            <div className="flex items-center gap-2 mb-2">
+              <img src={google} className="w-6 rounded-lg" alt="Google" />
+              <h1>new one</h1>
             </div>
-
-            <div>
-              <h1 className="text-white text-lg font-serif">Follow Us: </h1>
-              <p className="text-white">dfdfdfdfdfdf</p>
-              <p className="text-white">dfdfdfdfdfdf</p>
-            </div>
-
-            <div>
-              <h1 className="text-white text-lg font-serif">Follow Us: </h1>
-              <p className="text-white">dfdfdfdfdfdf</p>
-              <p className="text-white">dfdfdfdfdfdf</p>
-             
-            </div>
-
-            <div>
-              <h1 className="text-white text-lg font-serif">Follow Us: </h1>
-              <div className="flex gap-2">
-                <img src={google} className="w-6 rounded-lg " alt="" />
-                <h1 className="text-white gap-2">new one</h1>
-              </div>
-              <div className="flex gap-2">
-                <img src={gamail} className="w-6 rounded-lg " alt="" />
-                <h1 className="text-white gap-2">new one</h1>
-              </div>
-            </div>
-
-            <div>
-              <h1 className="text-white text-lg font-serif">Follow Us: </h1>
-              <div className="flex gap-6 mt-2">
-                <img src={facebook} className="w-8 rounded-lg " alt="" />
-                <img src={linkdin} className="w-8 rounded-lg " alt="" />
-                <img src={instr} className="w-8 rounded-lg " alt="" />
-                <img src={youtube} className="w-8 rounded-lg " alt="" />
-              </div>
+            <div className="flex items-center gap-2">
+              <img src={gmail} className="w-6 rounded-lg" alt="Gmail" />
+              <h1>new one</h1>
             </div>
           </div>
-        </div>
+          
+          {/* Social Media Icons */}
+          
 
-        <div className="flex justify-center items-center mt-4 text-white">
+        </div>
+        
+        <div className="mt-6 text-center text-white">
           <p>@compywirthuviersity.com</p>
         </div>
       </div>
     </div>
   );
 }
-
