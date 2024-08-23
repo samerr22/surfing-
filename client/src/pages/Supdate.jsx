@@ -134,6 +134,9 @@ export default function Supdate() {
                         onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                         value={formData.contact}
                       />
+                       <p className="mt-0 text-white h-0     rounded-lg text-center ">
+                      Please Enter the Number
+                    </p>
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-700 ml-1">

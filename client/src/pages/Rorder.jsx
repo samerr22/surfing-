@@ -68,7 +68,7 @@ export default function Rorder() {
       <img
         src={girl}
         alt=""
-        className="w-full h-[700px] opacity-95 object-cover "
+        className="w-full h-screen opacity-95 object-cover "
       />
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1  flex justify-center items-center">
