@@ -1,15 +1,10 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
+
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  signInStart,
-  signInSuccess,
-  signInFailure,
-} from "../redux/user/userSilce";
+
 import girl from "../img/img.jpg";
 
-export default function supplierAdd() {
+export default function Supdate() {
   const [formData, setFormData] = useState({});
   
     const [publishError, setPublishError] = useState(null);
@@ -18,10 +13,7 @@ export default function supplierAdd() {
   
     const navigate = useNavigate();
 
-  const handlchange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
-  };
-
+ 
   
   useEffect(() => {
     try {
@@ -71,8 +63,10 @@ export default function supplierAdd() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate();
+        
         alert("sucsses ")
+        navigate("/table");
+        
       }
     } catch (error) {
       setPublishError("Something went wrong");

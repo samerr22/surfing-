@@ -2,12 +2,12 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "proxy": "http://localhost:3000",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "start": "react-scripts start --port 3000",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
@@ -38,5 +38,17 @@
     "tailwind-scrollbar": "^3.0.5",
     "tailwindcss": "^3.4.1",
     "vite": "^5.0.8"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

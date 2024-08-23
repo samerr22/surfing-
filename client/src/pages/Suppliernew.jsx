@@ -1,15 +1,10 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  signInStart,
-  signInSuccess,
-  signInFailure,
-} from "../redux/user/userSilce";
+
 import girl from "../img/img.jpg";
 
-export default function supplierAdd() {
+export default function Suppliernew() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const [validation, setValidation] = useState(null);

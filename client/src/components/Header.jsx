@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { signoutSuccess } from "../redux/user/userSilce";
@@ -50,7 +50,7 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <Link to="/sign-in" className="text-white hover:text-gray-200">
+            <Link to="/sign-in" className="text-white ml-[1000px] hover:text-gray-200">
               <li>Sign In</li>
             </Link>
           )}

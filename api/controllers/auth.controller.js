@@ -1,6 +1,4 @@
 import User from "../models/user.model.js";
-import bcryptjs from "bcryptjs";
-import { errorHandle } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
@@ -45,7 +43,7 @@ export const signgin = async (req, res, next) => {
     }
 
     const token = jwt.sign(
-      { id: validUser._id, isfinancialmanger: validUser.isfinancialmanger },
+      { id: validUser._id },
       process.env.JWT_SECRET
     );
     const { password: pass, ...rest } = validUser._doc;

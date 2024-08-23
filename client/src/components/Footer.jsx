@@ -1,9 +1,7 @@
-import facebook from "../img/facebook.png";
+
 import gmail from "../img/gmail.png";
 import google from "../img/google-maps.png";
-import instr from "../img/instagram.png";
-import linkedin from "../img/linkedin.png";
-import youtube from "../img/youtube.png";
+
 
 export default function Footer() {
   return (

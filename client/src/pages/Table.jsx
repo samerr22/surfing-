@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Cat from "../img/pic.jpg";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 export default function Schedul() {
-  const [publishError, setPublishError] = useState(null);
+  
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const navigate = useNavigate();
+  
   const [Info, setInfo] = useState([]);
   console.log(Info);
   const [DId, setformId] = useState("");

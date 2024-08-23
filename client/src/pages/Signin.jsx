@@ -1,6 +1,6 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
+import {  Spinner,  } from "flowbite-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signInStart,
@@ -40,10 +40,10 @@ export default function SignIn() {
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate("/");
+        navigate("/table");
       }
     } catch (error) {
-      dispatch(signInFailure(data.message));
+      dispatch(signInFailure("error"));
     }
   };
 
@@ -52,7 +52,7 @@ export default function SignIn() {
       <img
         src={girl}
         alt=""
-        className="w-full h-[700px] opacity-95 object-cover "
+        className="w-full h-screen opacity-95 object-cover "
       />
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1  flex justify-center items-center">
